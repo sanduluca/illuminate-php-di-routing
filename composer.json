@@ -1,0 +1,17 @@
+{
+    "name": "ggbear/illuminate-php-di-routing",
+    "description": "The Illuminate PHP-DI routing package(based on: illuminate/routing)",
+    "require": {
+        "php-di/php-di": "^6.1",
+        "illuminate/routing": "^6.12",
+        "illuminate/events": "^6.12"
+    },
+    "autoload": {
+        "psr-4": {
+            "GGbear\\Routing\\": "src/"
+        }
+    },
+    "suggest": {
+        "firebase/php-jwt": "Required if you want to use token authentication middleware."
+    }
+}
