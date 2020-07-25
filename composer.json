@@ -4,8 +4,8 @@
     "license": "MIT",
     "require": {
         "php-di/php-di": "^6.1",
-        "illuminate/routing": "^6.12",
-        "illuminate/events": "^6.12"
+        "illuminate/routing": "^7.21",
+        "illuminate/events": "^7.21"
     },
     "autoload": {
         "psr-4": {
