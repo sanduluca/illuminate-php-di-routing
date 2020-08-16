@@ -3,9 +3,9 @@
 namespace GGbear\Routing;
 
 use DI\Container;
-use Exception;
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Http\Request;
+use Throwable;
 
 class Pipeline extends \Illuminate\Pipeline\Pipeline
 {
@@ -25,12 +25,12 @@ class Pipeline extends \Illuminate\Pipeline\Pipeline
      * Handle the given exception.
      *
      * @param  mixed  $passable
-     * @param  \Exception  $e
+     * @param  \Throwable  $e
      * @return mixed
      *
-     * @throws \Exception
+     * @throws \Throwable
      */
-    protected function handleException($passable, Exception $e)
+    protected function handleException($passable, Throwable $e)
     {
         if (
             !$this->container->has(ExceptionHandler::class) ||

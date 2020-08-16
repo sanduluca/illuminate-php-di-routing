@@ -53,9 +53,9 @@ class Router extends \Illuminate\Routing\Router
      * @param  array|string  $methods
      * @param  string  $uri
      * @param  mixed  $action
-     * @return Route
+     * @return \Illuminate\Routing\Route
      */
-    protected function newRoute($methods, $uri, $action)
+    public function newRoute($methods, $uri, $action)
     {
         $route = new Route($methods, $uri, $action);
         $route->setRouterDI($this);

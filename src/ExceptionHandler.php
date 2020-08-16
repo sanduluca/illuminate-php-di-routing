@@ -7,16 +7,19 @@ use GGbear\Routing\Exceptions\BasicAuthenticationException;
 use GGbear\Routing\Exceptions\TokenAuthenticationException;
 use Illuminate\Http\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Throwable;
 
 class ExceptionHandler
 {
     /**
      * Report or log an exception.
      *
-     * @param  \Exception  $exception
+     * @param  \Throwable  $e
      * @return void
+     *
+     * @throws \Exception
      */
-    public function report(Exception $exception)
+    public function report(Throwable $e)
     {
         // parent::report($exception);
     }
@@ -25,30 +28,32 @@ class ExceptionHandler
      * Render an exception into an HTTP response.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $exception
-     * @return \Illuminate\Http\Response
+     * @param  \Throwable  $e
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @throws \Throwable
      */
-    public function render($request, Exception $exception)
+    public function render($request, Throwable $e)
     {
 
         $response = new Response();
         $response->header("Content-Type", "application/json");
 
-        if ($exception instanceof BasicAuthenticationException) {
+        if ($e instanceof BasicAuthenticationException) {
             return $response->setContent([
                 'error' => true,
                 'message' => 'Basic authentication failed',
             ]);
         }
 
-        if ($exception instanceof TokenAuthenticationException) {
+        if ($e instanceof TokenAuthenticationException) {
             return $response->setContent([
                 'error' => true,
                 'message' => 'Token is invalid',
             ]);
         }
 
-        if ($exception instanceof NotFoundHttpException) {
+        if ($e instanceof NotFoundHttpException) {
             return $response->setContent([
                 'error' => true,
                 'message' => 'Invalid route',
